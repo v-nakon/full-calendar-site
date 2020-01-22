@@ -1,0 +1,174 @@
+@import vars
+@import fonts
+@import libs
+
+.container_event_bg
+    width: 100%
+    background-color: #F2F3F4
+.container_event
+    padding-top: 20px
+.container_event_top
+    display: flex
+    justify-content: space-between
+    margin: auto
+    width: $container-event-width
+.container_event_bottom
+    width: $container-event-width
+    margin: 40px auto 0 auto
+    padding-bottom: 20px
+.container_event_img
+    width: 30%
+.event_img
+    max-width: 100%
+    height: auto
+.container_event_info
+    width: 65%
+    display: flex
+    flex-direction: column
+.event_info
+    width: 100%
+    border: 1px solid #e1e1e1
+    border-radius: 5px
+    background: #fff
+    padding: 25px
+    margin-bottom: 15px
+    display: flex
+    justify-content: space-between
+.event_date
+    font-weight: 700
+    font-size: 16px
+    margin-bottom: 5px
+.event_title
+    text-transform: uppercase
+    font-size: 24px
+.event_tag
+    font-size: 16px
+    color: #fff
+    background-color: $bg-tag
+    width: fit-content
+    padding: 3px 6px
+    border-radius: 5px
+.container_event_price
+    border: 1px solid #e1e1e1
+    border-radius: 5px
+    background: #fcfcfc
+    padding: 15px 20px
+    font-weight: 700
+    height: fit-content
+    min-width: 220px
+    max-width: 230px
+.event_price
+    font-size: 18px
+    text-align: center
+.event_price span
+    margin-left: 10px
+    font-size: 22px
+.event_location
+    display: flex
+    margin-right: 10px
+.event_location_icon
+    width: 30px
+    margin-right: 15px
+.event_address_by
+    display: flex
+    flex-direction: column
+.event_location_address
+    font-size: 20px
+    font-weight: 700
+.event_by
+    font-size: 18px
+    color: #555
+.btn_buy
+    min-width: 165px !important
+    max-width: 170px
+    max-height: 70px !important
+    cursor: pointer
+
+    text-transform: uppercase
+    font-weight: 600
+    background: $btn-buy-bg
+    color: #fff
+    padding: 24px 40px
+    border-radius: 5px
+    text-align: center
+    -webkit-transition: background .3s
+    transition: background .3s
+    -webkit-box-shadow: 0 0 20px $btn-buy-shadow
+    box-shadow: 0 0 20px $btn-buy-shadow
+.btn_buy:hover
+    opacity: 0.6
+    -webkit-transition: background .3s
+    transition: background .3s
+.social_icons
+    display: flex
+    justify-content: flex-end
+.social_icon
+    width: 30px
+    margin-left: 15px
+.event_content
+    width: 60%
+    border: 2px solid #e9e6e6
+    padding: 15px
+    margin-bottom: 20px
+    background: #fff
+.description
+    font-size: 18px
+    font-weight: 800
+    margin-bottom: 30px
+.event_content_title
+    font-weight: 500
+    font-size: 24px
+    margin-bottom: 15px
+.content
+    font-size: 16px
+    color: #555
+footer
+    display: flex
+    justify-content: center
+    align-items: center
+    border-top: 2px solid
+    padding: 10px 0
+@media (max-width: 1200px)
+    .event_title
+        font-size: 22px
+@media (max-width: 1200px)
+    .container_event_top
+        width: 95%
+@media (max-width: 992px)
+    .event_info
+        flex-direction: column
+    .container_event_price, .btn_buy
+        margin-top: 10px
+@media (max-width: 768px)
+    .container_event_img
+        width: 35%
+    .container_event_info
+        width: 60%
+    .event_title
+        font-size: 20px
+    .event_tag
+        font-size: 16px
+    .event_location_icon
+        width: 40px
+    .event_content
+        width: 100%
+@media (max-width: 576px)
+    .container_event_top
+        flex-direction: column
+    .container_event_img
+        width: 100%
+        display: flex
+        justify-content: center
+        margin: 15px 0
+    .container_event_info
+        width: 100%
+    .container_event_price
+        margin: 10px auto
+    .btn_buy
+        margin: 10px auto 0 auto
+    .social_icons
+        justify-content: center
+    .container_event_bottom
+        margin: 15px auto 0 auto
+        padding-bottom: 10px
+        width: 95%
