@@ -121,7 +121,11 @@ html, body
 header
     // background-color: #F2F3F4
     border-bottom: 2px solid
-input[type=text], select
+    height: 80px
+    width: 100%
+    display: flex
+    align-items: center
+input[type=text], select, input[type=email]
   padding: 3px 8px
   display: inline-block
   border: 1px solid #ccc
@@ -138,20 +142,26 @@ input[type=submit]
   cursor: pointer
 input[type=submit]:hover
   opacity: 0.7
+.form_group
+	display: flex
+	flex-direction: column
+	margin-bottom: 5px
 .search_input
     display: flex
     height: 27px
 .container_header
-    width: 100%
+    width: 90%
     display: flex
-    justify-content: space-evenly
+    justify-content: space-between
+    align-items: center
     margin: auto
-    height: 80px
+
 .container_search
     display: flex
     flex-direction: column
     align-items: center
     justify-content: center
+    margin-top: 10px
 .search_tags
     display: flex
 .search_tag
@@ -161,8 +171,8 @@ input[type=submit]:hover
     padding: 0 4px
     border-radius: 4px
     cursor: pointer
-.search_tag:hover
-    background-color: #F5878E 
+.search_tag:hover, .container_create_event:hover
+    background-color: #F5878E
 .container_logo
     display: flex
     align-items: center
@@ -175,11 +185,86 @@ input[type=submit]:hover
     font-family: fantasy
 #search_icon
     display: none
+    width: 25px
+.container_create_search
+    display: flex
+    justify-content: space-between
+.container_create_event
+    display: flex
+    align-items: center
+    cursor: pointer
+    padding: 3px 6px
+    border-radius: 4px
+.create_event_icon
+    width: 24px
+    margin-right: 5px
+.create_event_text
+    font-weight: 600
+    font-size: 14px
+    color: #555
+// MODAL CREATE EVENT
+/* The Modal (background) */
+.container_modal, .container_modal_moderation, .container_modal_error, .container_modal_notfound
+    display: none
+    position: fixed
+    z-index: 99999999
+    padding-top: 50px
+    left: 0
+    top: 0
+    width: 100%
+    height: 100%
+    overflow: auto
+    background-color: rgb(0,0,0)
+    background-color: rgba(0,0,0,0.4)
+
+/* Modal Content */
+.modal_content
+    @include modal_content
+    width: 60%
+.modal_content_moderation, .modal_content_error, .modal_content_notfound
+    @include modal_content
+    width: 50%
+/* The Close Button */
+.close_modal, .close_modal_moderation, .close_modal_error, .close_modal_notfound
+    color: #aaaaaa
+    float: right
+    font-size: 28px
+    font-weight: bold
+.close_modal:hover,
+.close_modal:focus,
+.close_modal_moderation:hover,
+.close_modal_moderation:focus,
+.close_modal_error:hover,
+.close_modal_error:focus,
+.close_modal_notfound:hover,
+.close_modal_notfound:focus
+    color: #000
+    text-decoration: none
+    cursor: pointer
+.modal_header
+    @include flex-center
+.modal_title
+    font-size: 18px
+#submit_create_event
+    @include input_submit
+    width: 20%
+    margin-top: 10px
+#submit_create_event:hover
+    opacity: 0.7
+// END MODAL CREATE EVENT
+
+// VALIDATION
+.error_msg
+    color: red
+    font-size: 10px;
+
+// END VALIDATION
 
 @media (max-width: 768px)
-    .container_header
-        width: 98%
+    header
         height: 50px
+    .container_header
+        width: 95%
         justify-content: space-between
     .logo_icon
         width: 25px
@@ -209,7 +294,14 @@ input[type=submit]:hover
     .container_header
         width: 95%
         align-items: center
+    .container_create_event:hover
+        background-color: white
     .show
         display: block
     .hide
+        display: none
+    .container_create_event
+        padding: 0
+        margin-right: 10px
+    .create_event_text
         display: none

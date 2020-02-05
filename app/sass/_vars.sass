@@ -4,6 +4,29 @@ $bg-tag: #52BE80
 $btn-buy-bg: #F82E3A
 $btn-buy-shadow: #EB1D2A
 
+@mixin flex-center
+    display: flex
+    justify-content: space-between
+    align-items: center
+@mixin input_submit
+    background-color: $btn-buy-bg
+    color: white
+    padding: 5px 10px
+    margin: 8px 0
+    border: none
+    border-radius: 4px
+    font-size: 12px
+@mixin for_textarea
+    padding: 3px 8px
+    border: 1px solid #ccc
+    border-radius: 4px
+    font-size: 12px
+@mixin modal_content
+    background-color: #fefefe
+    margin: auto
+    padding: 20px
+    border: 1px solid #888
+
 // // Breakpoints mixin settings (node_modules/bootstrap/scss/mixins/_breakpoints.scss)
 // // Example: +media-breakpoint-down(xs) - ≥576px / +media-breakpoint-up(sm) - // ≤576px
 // // Default variables: node_modules/bootstrap/scss/_variables.scss
