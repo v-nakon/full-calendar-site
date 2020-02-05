@@ -34,13 +34,11 @@
             </div>
             <div class="container_search">
                 <div class="search_input">
-                    <select name="city">
-                        <option value="kiev">Kiev</option>
-                        <option value="odessa">Odessa</option>
-                        <option value="lvov">Lvov</option>
+                    <select name="city" id="location">
+						<option value="">Все города</option>
                       </select>
-                      <input type="text" id="event_name" placeholder="Event name..">
-                      <input type="submit" value="Search">
+                      <input type="text" id="event_name" placeholder="Название..">
+                      <input type="submit" id="btn_search" value="Поиск">
                 </div>
                 <div class="search_tags">
                     <div class="search_tag">Concert</div>
@@ -54,6 +52,7 @@
 	<div class="calendar_bg">
 		<div id="calendar"></div>
 	</div>
+	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 	<script src="js/scripts.min.js"></script>
 </body>
 </html>
