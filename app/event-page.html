@@ -24,7 +24,7 @@
                 <svg class="logo_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#EE1522" d="M12 0c-3.148 0-6 2.553-6 5.702 0 3.148 2.602 6.907 6 12.298 3.398-5.391 6-9.15 6-12.298 0-3.149-2.851-5.702-6-5.702zm0 8c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2zm8 12c0 2.209-3.581 4-8 4s-8-1.791-8-4c0-1.602 1.888-2.98 4.608-3.619l1.154 1.824c-.401.068-.806.135-1.178.242-3.312.949-3.453 2.109-.021 3.102 2.088.603 4.777.605 6.874-.001 3.619-1.047 3.164-2.275-.268-3.167-.296-.077-.621-.118-.936-.171l1.156-1.828c2.723.638 4.611 2.016 4.611 3.618z"/></svg>
                 <div class="logo_text">eventerra</div>
             </div>
-            <div class="container_search">
+            <!-- <div class="container_search">
                 <div class="search_input">
                     <select name="city">
                         <option value="kiev">Kiev</option>
@@ -39,7 +39,7 @@
                     <div class="search_tag">Webinar</div>
                     <div class="search_tag">Film</div>
                 </div>
-			</div>
+			</div> -->
 			<svg id="search_icon" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"/></svg>
 		</div>
 	</header>
@@ -52,23 +52,23 @@
             <div class="container_event_info">
                 <div class="event_info">
                     <div class="event_date_title">
-                        <div class="event_date">20 jun 2020</div>
-                        <h1 class="event_title">Thinkful Webinar | Intro to JavaScript: Build a Virtual Pet</h1>
-                        <div class="event_tag">Concert</div>
+                        <div class="event_date"></div>
+                        <h1 class="event_title"></h1>
+                        <div class="event_cat">Concert</div>
                     </div>
                     <div class="container_event_price">
-                        <div class="event_price">Price:<span>100-200 $</span></div>
+                        <div class="event_price">Цена:<span id="price"></span></div>
                     </div>
                 </div>
                 <div class="event_info">
                     <div class="event_location">
                         <svg class="event_location_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-4.198 0-8 3.403-8 7.602 0 4.198 3.469 9.21 8 16.398 4.531-7.188 8-12.2 8-16.398 0-4.199-3.801-7.602-8-7.602zm0 14c-3.314 0-6-2.686-6-6s2.686-6 6-6 6 2.686 6 6-2.686 6-6 6z"/></svg>  
                         <div class="event_address_by">
-                            <div class="event_location_address">Hacker Dojo, 3350 Thomas Rd #150, Sunnyvale, CA</div>
-                            <div class="event_by">by Thinkful Las Vegas</div>
+                            <div class="event_location_address"></div>
+                            <!-- <div class="event_by">by Thinkful Las Vegas</div> -->
                         </div>
                     </div>
-                    <div class="btn_buy">Buy ticket</div>
+                    <div class="btn_buy">Купить билет</div>
                 </div>
                 <div class="social_icons">
                     <svg class="social_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-2 10h-2v2h2v6h3v-6h1.82l.18-2h-2v-.833c0-.478.096-.667.558-.667h1.442v-2.5h-2.404c-1.798 0-2.596.792-2.596 2.308v1.692z"/></svg>
@@ -79,15 +79,10 @@
             </div>
             <div class="container_event_bottom">
                 <article class="event_content">
-                    <div class="description">Description</div>
-                    <h2 class="event_content_title">Thinkful Webinar | Intro to JavaScript: Build a Virtual Pet</h2>
-                    <p class="content">С 13 по 16 февраля 2020 года во Дворце спорта в Киеве состоится 7 спектаклей невероятного акробатического шоу на льду CRYSTAL от всемирно известного Cirque du Solei! Во время представления артисты цирка соединят цирковое искусство и фигурное катание, они преодолеют гравитацию и продемонстрируют удивительное мастерство акробатики, которой еще никогда не было. Премьера спектакля в Киеве состоится 13 февраля 2020. Ведь аналогов этому выступлению — просто нет!</p>
-                    <p class="content">Это не просто концерт из цирковых номеров, а история главной героини и ее самопознания. Зрители придут в мир воображения девушки и попадут в увлекательное путешествие, полное чрезвычайных эмоций. Вас ждут незабываемые впечатления, оригинальная музыка и визуальные эффекты. Это приключение, от которого действительно захватывает дух.</p>
-                    <p class="content">Режиссеры шоу Шана Кэрролл (Shana Carroll) и Себастиан Солдевила (Sebastien Soldevila). Спектакль Crystal создали 43 артиста и более 40-ка технических работников из разных стран мира. Шоу Сirque du Soleil уже увидели более 180 миллионов зрителей на шести континентах. Сейчас в цирке работает более 4000 рабочих и 1300 артистов.
-
-                        Чтобы увидеть шоу CRYSTAL от Cirque du Soleil в Киеве, покупайте билеты на нашем сайте и в кассах города. Цена билетов от 1499 до 2999 гривен. Еще больше событий ищите в афише на нашем сайте.
-                        
-                        Дети до 5-и лет, если они не занимают отдельного места, могут посетить шоу бесплатно. Если на момент посещения шоу ребенку исполнилось 5 лет, то ребенку нужен билет.</p>
+                    <div class="description">Описание</div>
+                    <div class="group_tags"></div>
+                    <h2 class="event_content_title"></h2>
+                    <p class="content"></p>
                 </article>
             </div>
         </div>
@@ -98,7 +93,8 @@
             <div class="logo_text">eventerra</div>
         </div>
     </footer>
-	<script src="js/event-page.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="js/event-page.js"></script>
 
 </body>
 </html>

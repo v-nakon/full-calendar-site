@@ -41,13 +41,16 @@
 .event_title
     text-transform: uppercase
     font-size: 24px
-.event_tag
+.group_tags
+    display: flex
+.event_cat, .event_tag
     font-size: 16px
     color: #fff
     background-color: $bg-tag
     width: fit-content
     padding: 3px 6px
     border-radius: 5px
+    margin-right: 5px
 .container_event_price
     border: 1px solid #e1e1e1
     border-radius: 5px
@@ -65,6 +68,7 @@
     font-size: 22px
 .event_location
     display: flex
+    align-items: center
     margin-right: 10px
 .event_location_icon
     width: 30px
@@ -88,7 +92,7 @@
     font-weight: 600
     background: $btn-buy-bg
     color: #fff
-    padding: 24px 40px
+    padding: 24px 20px
     border-radius: 5px
     text-align: center
     -webkit-transition: background .3s
@@ -146,7 +150,7 @@ footer
         width: 60%
     .event_title
         font-size: 20px
-    .event_tag
+    .event_cat, .event_tag
         font-size: 16px
     .event_location_icon
         width: 40px
