@@ -96,10 +96,11 @@ function createCalendar(arrEvents) {
 	  defaultView: 'dayGridMonth',
 	  themeSystem: 'solar',
 	  height: 'parent',
+	  locale: 'ru',
 	//   defaultDate: '2019-11-12',
   
 	  eventRender: function(info) {
-		info.el.title = info.event.extendedProps.description
+		// info.el.title = info.event.extendedProps.description
 		info.el.onmouseover = function(el) {
 		  info.el.style.opacity = '0.5'
 		}
