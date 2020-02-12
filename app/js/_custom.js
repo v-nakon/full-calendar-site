@@ -34,7 +34,6 @@ function getCities(elementSelect) {
     });
 };
 function searchRequest(title, city) {
-	console.log("title", title);
 	axios.get('https://eventafisha.com/api/v1/events', {
 		params: {
 			title: title,
@@ -63,6 +62,14 @@ function searchTitleCity(titleEl, cityEl) {
 	let cityEvent = document.getElementById(cityEl).value;
 	searchRequest(nameEvent, cityEvent);
 };
+function sliceText(text) {
+	let sliced = text.replace(/<\/?[^>]+>/g,'');
+	sliced = sliced.slice(0,100);
+	if (sliced.length < text.length) {
+		sliced += '...';
+	}
+	return sliced;
+};
 function createEvents(response) {
 	let arrEvents = [];
 	for(let item in response) {
@@ -72,6 +79,9 @@ function createEvents(response) {
 		objEvent.start = response[item].start_date;
 		objEvent.color = 'purple';
 		objEvent.url = '/event-page.html?id=' + response[item].id;
+		objEvent.description = `<img src="https://eventafisha.com/storage/` + response[item].images +`" width="150">
+		<h1>` + response[item].title + `</h1>
+		<div class="desc_short">` + sliceText(response[item].desc) + `</div>`;
 		arrEvents.push(objEvent);
 	};
 	console.log(arrEvents);
@@ -81,7 +91,6 @@ function createEvents(response) {
 
 function createCalendar(arrEvents) {
 	var calendarEl = document.getElementById('calendar');
-  
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 	  plugins: [ 'dayGrid' ],
 	  defaultView: 'dayGridMonth',
@@ -90,7 +99,7 @@ function createCalendar(arrEvents) {
 	//   defaultDate: '2019-11-12',
   
 	  eventRender: function(info) {
-		info.el.title = info.event.title
+		info.el.title = info.event.extendedProps.description
 		info.el.onmouseover = function(el) {
 		  info.el.style.opacity = '0.5'
 		}
@@ -101,7 +110,8 @@ function createCalendar(arrEvents) {
 		  title: info.event.extendedProps.description,
 		  placement: 'top',
 		  trigger: 'hover',
-		  container: 'body'
+		  container: 'body',
+		  html: true,
 		});
 	  },
   

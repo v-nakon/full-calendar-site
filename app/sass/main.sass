@@ -18,21 +18,16 @@ html, body
 
 #calendar
     max-width: 95%
-    margin: 10px auto 0 auto
-
-// /*
-// i wish this required CSS was better documented :(
-// https://github.com/FezVrasta/popper.js/issues/674
-// derived from this CSS on this page: https://popper.js.org/tooltip-examples.html
-// */
+    margin: 0 auto
 
 .popper,
 .tooltip
     position: absolute
     z-index: 9999
-    background: #999
+    background: white
     color: black
-    width: 150px
+    font-weight: 400
+    width: 200px
     border-radius: 3px
     box-shadow: 0 0 2px rgba(0,0,0,0.5)
     padding: 10px
@@ -117,15 +112,18 @@ html, body
     margin-left: 0
     margin-right: 0
 
-
+.desc_short
+    font-size: 10px
+    letter-spacing: 1px
+    color: #666
 header
     // background-color: #F2F3F4
     border-bottom: 2px solid
-    height: 80px
+    height: 70px
     width: 100%
     display: flex
     align-items: center
-input[type=text], select, input[type=email]
+input[type=text], select, input[type=date], input[type=time], input[type=file], input[address], input[type=email]
   padding: 3px 8px
   display: inline-block
   border: 1px solid #ccc
@@ -140,6 +138,8 @@ input[type=submit]
   border: none
   border-radius: 4px
   cursor: pointer
+textarea
+    @include for_textarea
 input[type=submit]:hover
   opacity: 0.7
 .form_group
@@ -176,13 +176,17 @@ input[type=submit]:hover
 .container_logo
     display: flex
     align-items: center
+.container_header a
+    text-decoration: none !important
 .logo_icon
-    width: 45px
+    width: 40px
+    height: 40px
 .logo_text
     font-weight: 700
-    font-size: 30px
+    font-size: 25px
     text-transform: uppercase
-    font-family: fantasy
+    font-family: Lato, sans-serif
+    color: #2C3E50
 #search_icon
     display: none
     width: 25px
@@ -223,7 +227,7 @@ input[type=submit]:hover
     width: 60%
 .modal_content_moderation, .modal_content_error, .modal_content_notfound
     @include modal_content
-    width: 50%
+    width: 40%
 /* The Close Button */
 .close_modal, .close_modal_moderation, .close_modal_error, .close_modal_notfound
     color: #aaaaaa
@@ -260,20 +264,23 @@ input[type=submit]:hover
 
 // END VALIDATION
 
-@media (max-width: 768px)
+@media (max-width: 780px)
     header
-        height: 50px
+        height: 60px
+    .calendar_bg
+        top: 70px
     .container_header
         width: 95%
         justify-content: space-between
     .logo_icon
-        width: 25px
+        width: 20px
+        height: 20px
     .logo_text
         font-weight: 600
-        font-size: 20px
+        font-size: 15px
     .search_input
         height: 20px
-    input[type=text], select
+    #event_name, #location
        padding: 0px 4px
        font-size: 10px
        margin-right: 5px
@@ -284,8 +291,12 @@ input[type=submit]:hover
         margin: 0
         font-size: 12px
         padding: 0 4px
-
-    
+    .modal_content
+        width: 90%
+    #submit_create_event
+        width: 40%
+    .modal_content_moderation, .modal_content_error, .modal_content_notfound
+        width: 90%
 @media (max-width: 576px)
     #search_icon
         display: block
