@@ -2,12 +2,13 @@ getAllEvents();
 getCities("location");
 let btnSearch = document.getElementById("btn_search");
 btnSearch.addEventListener('click',() => searchTitleCity("event_name", "location"));
+
 function getAllEvents() {
 	axios.get('https://eventafisha.com/api/v1/events')
 	.then(function (response) {
 	  // handle success
-	  let allEvent = response.data.data;
-	  console.log(response.data.data);
+	  let allEvent = response.data;
+	  console.log(response.data);
 	  createEvents(allEvent);
 	})
 	.catch(function (error) {
@@ -33,8 +34,26 @@ function getCities(elementSelect) {
       // always executed
     });
 };
+function checkSearchParam(title, city, date, category) {
+	let link = "https://eventafisha.com/api/v1/events?";
+	if(title !== "") {
+		link += "&title=" + title;
+	}
+	if(city !== "") {
+		link += "&city_id=" + city;
+	}
+	if(date !== "") {
+		link += "&date=" + date;
+	}
+	if(category !== "") {
+		link += "&category_id=" + category;
+	}
+	return link;
+};
 function searchRequest(title, city) {
-	axios.get('https://eventafisha.com/api/v1/events', {
+	let url = checkSearchParam(title, city, "", "")
+	console.log(url)
+	axios.get(url, {
 		params: {
 			title: title,
 			city_id: city
