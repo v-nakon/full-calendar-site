@@ -101,10 +101,12 @@ function getCities() {
     });
 };
 function createEvent() {
+  let newStartDate = dateForRequest(startDateEvent);
+  let newEndDate = dateForRequest(endDateEvent);
   axios.post('https://eventafisha.com/api/v1/events', {
         title: nameEvent,
-        start_date: startDateEvent,
-        end_date: endDateEvent,
+        start_date: newStartDate,
+        end_date: newEndDate,
         time: timeEvent,
         address: addressEvent,
         cost: priceEvent,
@@ -150,9 +152,9 @@ function getBase64() {
 };
 function getModalInputs() {
   nameEvent = document.querySelector("#modal_event_name").value;
-  startDateEvent = document.querySelector("#modal_start_date").value;
-  endDateEvent = document.querySelector("#modal_end_date").value;
-  timeEvent = document.querySelector("#modal_time").value;
+  // startDateEvent = document.querySelector(".datepicker_event_start").value;
+  // endDateEvent = document.querySelector("#modal_end_date").value;
+  // timeEvent = document.querySelector("#modal_time").value;
   priceEvent = document.querySelector("#modal_price").value;
   categoryEvent = document.querySelector("#modal_category").value;
   tagsElement = document.querySelector("#modal_tags");
@@ -173,9 +175,6 @@ function getModalInputs() {
 function validateDate(value) {
   var arrD;
   arrD = value.split(".");
-  if(arrD.length == 0) {
-    arrD = value.split("/");
-  }
   arrD[1] -= 1;
   var d = new Date(arrD[2], arrD[1], arrD[0]);
   if ((d.getFullYear() == arrD[2]) && (d.getMonth() == arrD[1]) && (d.getDate() == arrD[0])) {
@@ -183,6 +182,15 @@ function validateDate(value) {
   } else {
     return false;
   }
+}
+function dateForRequest(date) {
+  if(date !== '') {
+    let arr = date.split(".");
+    let newDate = arr[2] + '-' + arr[1] + '-' + arr[0];
+    console.log(newDate);
+    return newDate;
+  }
+  return date;
 }
 function inputsValidation() {
   let errorTitle = document.querySelector("#error_title");
@@ -203,7 +211,7 @@ function inputsValidation() {
   } else {
     errorTitle.innerHTML = '';
   }
-  if(validateDate(new Date(startDateEvent).toLocaleDateString())) {
+  if(validateDate(startDateEvent)) {
     errorStartDate.innerHTML = '';
   } else {
     errorStartDate.innerHTML = 'Поле "Дата начала мероприятия" пустое или имеет не правильный формат!';
@@ -271,3 +279,53 @@ function inputsValidation() {
   }
   createEvent();
 };
+
+$(function(){
+	$('.datepicker_event_start').datepicker({
+	   onSelect: function (dateText, inst) {
+		//   console.log(dateText)
+      startDateEvent = dateText;
+		  console.log("start", startDateEvent);
+	   },
+     minDate: new Date(),
+     autoClose: true
+	});
+ });
+
+ $(function(){
+	$('.datepicker_event_end').datepicker({
+	   onSelect: function (dateText, inst) {
+		//   console.log(dateText)
+      endDateEvent = dateText;
+		  console.log("end", endDateEvent);
+	   },
+     minDate: new Date(),
+     autoClose: true
+	});
+ });
+
+//  $(function(){
+// 	$('.datepicker_time').datepicker({
+// 	   onSelect: function (dateText, inst) {
+// 		//   console.log(dateText)
+//       // endDateEvent = dateText;
+// 		  console.log("TIME", dateText);
+// 	   },
+//      autoClose: true,
+//      dateFormat: ' ',
+//      timepicker: true,
+//      classes: 'only-timepicker'
+// 	});
+//  });
+
+$('.datepicker_time').datepicker({
+  timepicker: true,
+  onlyTimepicker: true,
+  classes: 'only-timepicker',
+  onSelect: function (dateText, inst) {
+        timeEvent = dateText;
+    		//   console.log(dateText)
+          // endDateEvent = dateText;
+    		  // console.log("TIME", dateText);
+    	   },
+});

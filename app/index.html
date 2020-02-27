@@ -17,12 +17,15 @@
 	<link rel="stylesheet" href="css/styles.min.css">
 	<link rel="stylesheet" href="css/main.min.css"> <!-- <link href="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css" rel="stylesheet"> -->
 	<link rel="stylesheet" href="css/main2.min.css"> <!-- <link href="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css" rel="stylesheet"> -->
+	<link rel="stylesheet" href="css/datepicker.css">
 
 	<script src="js/locales-all.js"></script>
 	<script src="js/main.min.js"></script> <!-- <!-- <script src="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js"></script> --> 
 	<script src="js/daygrid.min.js"></script> <!-- <script src="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js"></script> -->
 	<script src="js/popper.min.js"></script> <!-- <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script> -->
 	<script src="js/tooltip.min.js"></script><!-- <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script> -->
+	<script src="js/jquery.min.js"></script>
+	<script src="js/datepicker.js"></script>
 
 </head>
 
@@ -74,18 +77,17 @@
 				</div>
 				<div class="form_group">
 					<label for="modal_start_date">Дата начала мероприятия</label>
-					<input type="date" id="modal_start_date">
+					<input type="text" class="datepicker_event_start" placeholder="Дата начала.."/>
 					<span id="error_start_date" class="error_msg"></span>
 				</div>
 				<div class="form_group">
 					<label for="modal_end_date">Дата конца мероприятия</label>
-					<input type="date" id="modal_end_date">
+					<input type="text" class="datepicker_event_end" placeholder="Дата конца.."/>
 					<span id="error_end_date" class="error_msg"></span>
 				</div>
 				<div class="form_group">
 					<label for="modal_time">Время начала мероприятия</label>
-					<!-- <input type="text" onfocus="(this.type='time')" placeholder="Время началаюю" id="modal_time"> -->
-					<input type="time" id="modal_time">
+					<input type="text" class="datepicker_time" placeholder="Время начала..">
 					<span id="error_time" class="error_msg"></span>
 				</div>
 				<div class="form_group">

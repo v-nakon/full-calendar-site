@@ -209,7 +209,7 @@ input[type=submit]:hover
 .container_modal, .container_modal_moderation, .container_modal_error, .container_modal_notfound
     display: none
     position: fixed
-    z-index: 99999999
+    z-index: 99
     padding-top: 50px
     left: 0
     top: 0
@@ -261,7 +261,25 @@ input[type=submit]:hover
     font-size: 10px;
 
 // END VALIDATION
-
+.datepicker--day-name, .datepicker--cell.-current-
+    color: $main-color !important
+.datepicker--cell.-selected-
+	background: #E5EAEE !important
+	color: black !important
+.only-timepicker .datepicker--nav,
+.only-timepicker .datepicker--content
+    display: none
+.only-timepicker .datepicker--time
+    border-top: none
+.datepicker--time-row input[type='range']:focus::-webkit-slider-thumb
+    background: $main-color !important
+    border-color: $main-color !important
+.datepicker--time-row input[type='range']:focus::-moz-range-thumb
+    background: $main-color !important
+    border-color: $main-color !important
+.datepicker--time-row input[type='range']:focus::-ms-thumb
+    background: $main-color !important
+    border-color: $main-color !important
 @media (max-width: 780px)
     header
         height: 60px
