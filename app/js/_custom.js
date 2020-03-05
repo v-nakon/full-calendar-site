@@ -110,6 +110,7 @@ function createEvents(response) {
 
 function createCalendar(arrEvents) {
 	var calendarEl = document.getElementById('calendar');
+	calendarEl.innerHTML = '';
 	var calendar = new FullCalendar.Calendar(calendarEl, {
 	  plugins: [ 'dayGrid' ],
 	  defaultView: 'dayGridMonth',
