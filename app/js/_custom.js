@@ -1,15 +1,30 @@
 getAllEvents();
 getCities("location");
+getCategories();
 let btnSearch = document.getElementById("btn_search");
 btnSearch.addEventListener('click',() => searchTitleCity("event_name", "location"));
 
+var modalNotFound = document.querySelector(".container_modal_notfound");
+var closeModalNotfound = document.querySelector(".close_modal_notfound");
+
+closeModalNotfound.addEventListener("click", function() {
+	modalNotFound.style.display = "none";
+	document.location.href = "/";
+  });
+var elSpinner = document.querySelector(".container_spinner");
 function getAllEvents() {
 	axios.get('https://eventafisha.com/api/v1/events')
 	.then(function (response) {
 	  // handle success
 	  let allEvent = response.data;
-	  console.log(response.data);
-	  createEvents(allEvent);
+	  console.log(response.data.length);
+	if(response.data.length === 0) {
+		modalNotFound.style.display = "block";
+	} else {
+		createEvents(allEvent);
+		elSpinner.classList.add("hide_spinner");
+	}
+	  
 	})
 	.catch(function (error) {
 	  // handle error
@@ -34,6 +49,74 @@ function getCities(elementSelect) {
       // always executed
     });
 };
+function getCategories() {
+    axios.get('https://eventafisha.com/api/v1/categories')
+    .then(function (response) {
+      for(let item in response.data) {
+		addCatToSearch(response.data[item], ".container_category");
+      };
+    })
+    .catch(function (error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+};
+// categories for search
+function addCatToSearch(item, elementTo) {
+	// console.log(item);
+	let catElements = document.querySelector(elementTo);
+	let newCat = document.createElement("div");
+	newCat.classList.add("item_category");
+    newCat.setAttribute('category_id', item.id);
+    newCat.innerHTML = item.title;
+	catElements.appendChild(newCat);
+	addEventToElement(newCat, item.id);
+};
+function addEventToElement(element, catId) {
+	element.addEventListener("click", function(){
+		delActiveColor();
+		console.log("CAT - ", catId);
+		element.classList.add("color_active_cat");
+		document.querySelector(".arrow_down").classList.add("color_active_cat");
+		categorySearch = catId;
+	});
+};
+function delActiveColor() {
+	let arrActiveColor = document.querySelectorAll(".color_active_cat");
+	console.log("arr", arrActiveColor)
+	arrActiveColor.forEach(function(el){
+		el.classList.remove("color_active_cat");
+		// console.log("delete class")
+	})
+};
+// end categories for search
+// search function
+var nameEventSearch = '';
+var cityEventSearch = '';
+var categorySearch = '';
+
+var elCatAll = document.querySelector("#search_cat_all");
+var elCatMain1 = document.querySelector("#search_cat_main1");
+var elCatMain2 = document.querySelector("#search_cat_main2");
+
+elCatAll.addEventListener("click", function(){
+	delActiveColor();
+	elCatAll.classList.add("color_active_cat");
+	categorySearch = '';
+});
+elCatMain1.addEventListener("click", function(){
+	delActiveColor();
+	elCatMain1.classList.add("color_active_cat");
+	categorySearch = 4;
+});
+elCatMain2.addEventListener("click", function(){
+	delActiveColor();
+	elCatMain2.classList.add("color_active_cat");
+	categorySearch = 5;
+});
 function checkSearchParam(title, city, date, category) {
 	let link = "https://eventafisha.com/api/v1/events?";
 	if(title !== "") {
@@ -50,19 +133,20 @@ function checkSearchParam(title, city, date, category) {
 	}
 	return link;
 };
-function searchRequest(title, city) {
-	let url = checkSearchParam(title, city, "", "")
-	console.log(url)
-	axios.get(url, {
-		params: {
-			title: title,
-			city_id: city
-		  }
-	 })
+function searchRequest(title, city, category) {
+	let url = checkSearchParam(title, city, "", category)
+	console.log(url);
+	axios.get(url)
 	 .then(function (response) {
 		console.log(response);
-		let searchResponse = response.data.data;
-		createEvents(searchResponse);
+		let searchResponse = response.data;
+		if(response.data.length === 0) {
+			modalNotFound.style.display = "block";
+		} else {
+			createEvents(searchResponse);
+			elSpinner.classList.add("hide_spinner");
+		}
+		
 	 })
 	 .catch(function (error) {
 		console.log(error);
@@ -77,9 +161,9 @@ function addOptionSelect(item, elementSelect) {
   };
 // для поиска по названию/городу
 function searchTitleCity(titleEl, cityEl) {
-	let nameEvent = document.getElementById(titleEl).value;
-	let cityEvent = document.getElementById(cityEl).value;
-	searchRequest(nameEvent, cityEvent);
+	nameEventSearch = document.getElementById(titleEl).value;
+	cityEventSearch = document.getElementById(cityEl).value;
+	searchRequest(nameEventSearch, cityEventSearch, categorySearch);
 };
 function sliceText(text) {
 	let sliced = text.replace(/<\/?[^>]+>/g,'');
@@ -135,7 +219,6 @@ function createCalendar(arrEvents) {
 		  html: true,
 		});
 	  },
-  
 	  events: arrEvents,
 	  eventTextColor: 'white'
 	});
@@ -156,7 +239,26 @@ function createCalendar(arrEvents) {
 	});
 
 
+ // Open the dropdown window CATEGORY
+ var catWindow = document.querySelector(".dropdown_content");
+ var containerCatWindow = document.querySelector(".container_category");
+ var btnShowCat = document.querySelector(".dropbtn");
 
+
+//   btnShowCat.addEventListener("click", function() {
+//     catWindow.style.display = "block";
+//   });
+btnShowCat.addEventListener("click", function() {
+   catWindow.classList.toggle("show");
+   });
+ // Close the dropdown if the user clicks outside of it CATEGORY
+ window.onclick = function(event) {
+   if (!event.target.matches('.dropbtn') && !event.target.matches('.container_category') && !event.target.matches('.item_category')) {
+	   if (catWindow.classList.contains('show')) {
+		   catWindow.classList.remove('show');
+	   }
+   }
+ };
 
 
 

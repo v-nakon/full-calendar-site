@@ -46,11 +46,18 @@
                       <input type="text" id="event_name" placeholder="Название..">
                       <input type="submit" id="btn_search" value="Поиск">
                 </div>
-                <div class="search_tags">
-                    <div class="search_tag">Concert</div>
-                    <div class="search_tag">Webinar</div>
-                    <div class="search_tag">Film</div>
-                </div>
+                <div class="search_categories">
+				<div class="search_category color_active_cat" id="search_cat_all">Все</div>
+				<div class="search_category" id="search_cat_main1">Концерты</div>
+				<div class="search_category" id="search_cat_main2">Дизайн</div>
+				<div class="search_category border_none dropdown_window">
+					<i class="arrow_down dropbtn"></i>
+					<div class="dropdown_content">
+						<div class="container_category">
+						</div>
+					</div>
+				</div>
+				</div>
 			</div>
 			<div class="container_create_search">
 				<div class="container_create_event">
@@ -194,6 +201,11 @@
 		</div>
 	</div>
 	<!-- END MODAL NOT FOUND EVENT -->
+	<!-- start spinner -->
+	<div class="container_spinner">
+		<div class="lds-facebook"><div></div><div></div><div></div></div>
+	</div>
+	<!-- end spinner -->
 	<div class="calendar_bg">
 		<div id="calendar"></div>
 	</div>

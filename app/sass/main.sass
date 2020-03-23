@@ -160,9 +160,9 @@ input[type=submit]:hover
     align-items: center
     justify-content: center
     margin-top: 10px
-.search_tags
+.search_categories
     display: flex
-.search_tag
+.search_category
     margin: 7px
     font-weight: 600
     color: #555
@@ -280,6 +280,96 @@ input[type=submit]:hover
 .datepicker--time-row input[type='range']:focus::-ms-thumb
     background: $main-color !important
     border-color: $main-color !important
+//start drop-down category
+.arrow_down
+	border: solid black
+	border-width: 0 3px 3px 0
+	display: inline-block
+	padding: 4px
+	transform: rotate(45deg)
+	-webkit-transform: rotate(45deg)
+	margin-left: 5px
+.arrow_down:hover
+    border-color: $main-color
+.border_none 
+	border: none
+.dropdown_window
+	position: relative
+	display: inline-block
+
+.dropdown_content
+	display: none
+	position: absolute
+	right: -325px
+	top: 30px
+	background-color: #fff
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+	z-index: 99999
+.dropdown_content_mob
+    right: -60px
+.container_category
+	display: flex
+	flex-direction: row
+	flex-wrap: wrap
+	width: 400px
+.container_category_mob
+    display: flex
+    width: 280px
+    flex-direction: row
+    flex-wrap: wrap
+.item_category
+    font-size: 15px
+    color: black
+    padding: 10px 14px
+    min-width: 170px
+.container_category_mob .item_category
+    font-size: 12px
+    padding: 8px 12px
+    min-width: 110px
+.item_category:hover
+	color: $main-color
+.show
+	display: block
+.color_active_cat 
+	color: $main-color !important
+	border-color: $main-color
+//end drop-down category
+// start spinner
+.hide_spinner
+    display: none
+.container_spinner
+    position: fixed
+    top: 50%
+    left: 50%
+.lds-facebook
+    display: inline-block
+    position: relative
+    width: 80px
+    height: 80px
+.lds-facebook div
+    display: inline-block
+    position: absolute
+    left: 8px
+    width: 16px
+    background: #999
+    animation: lds-facebook 1.2s cubic-bezier(0, 0.5, 0.5, 1) infinite
+.lds-facebook div:nth-child(1)
+    left: 8px
+    animation-delay: -0.24s
+.lds-facebook div:nth-child(2)
+    left: 32px
+    animation-delay: -0.12s
+.lds-facebook div:nth-child(3)
+    left: 56px
+    animation-delay: 0
+@keyframes lds-facebook
+    0% 
+        top: 8px
+        height: 64px
+    50%, 100% 
+        top: 24px
+        height: 32px   
+// end spinner
 @media (max-width: 780px)
     header
         height: 60px
