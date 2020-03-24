@@ -1,6 +1,7 @@
 getAllEvents();
 getCities("location");
 getCategories();
+var calendar;
 let btnSearch = document.getElementById("btn_search");
 btnSearch.addEventListener('click',() => searchTitleCity("event_name", "location"));
 
@@ -82,6 +83,7 @@ function addEventToElement(element, catId) {
 		element.classList.add("color_active_cat");
 		document.querySelector(".arrow_down").classList.add("color_active_cat");
 		categorySearch = catId;
+		searchRequest(nameEventSearch, cityEventSearch, categorySearch);
 	});
 };
 function delActiveColor() {
@@ -97,26 +99,31 @@ function delActiveColor() {
 var nameEventSearch = '';
 var cityEventSearch = '';
 var categorySearch = '';
-
-var elCatAll = document.querySelector("#search_cat_all");
-var elCatMain1 = document.querySelector("#search_cat_main1");
-var elCatMain2 = document.querySelector("#search_cat_main2");
-
-elCatAll.addEventListener("click", function(){
-	delActiveColor();
-	elCatAll.classList.add("color_active_cat");
-	categorySearch = '';
-});
-elCatMain1.addEventListener("click", function(){
-	delActiveColor();
-	elCatMain1.classList.add("color_active_cat");
-	categorySearch = 4;
-});
-elCatMain2.addEventListener("click", function(){
-	delActiveColor();
-	elCatMain2.classList.add("color_active_cat");
-	categorySearch = 5;
-});
+var arrElCat = [
+	{
+		el: document.querySelector("#search_cat_all"),
+		id: ""
+	}, 
+	{
+		el: document.querySelector("#search_cat_main1"),
+		id: 4
+	}, 
+	{
+		el: document.querySelector("#search_cat_main2"),
+		id: 5
+	},
+];
+function addListenerToArrEl(arr) {
+	for(let i in arr) {
+		arr[i].el.addEventListener("click", function(){
+			delActiveColor();
+			arr[i].el.classList.add("color_active_cat");
+			categorySearch = arr[i].id;
+			searchRequest(nameEventSearch, cityEventSearch, categorySearch);
+		});
+	}
+}
+addListenerToArrEl(arrElCat);
 function checkSearchParam(title, city, date, category) {
 	let link = "https://eventafisha.com/api/v1/events?";
 	if(title !== "") {
@@ -134,6 +141,8 @@ function checkSearchParam(title, city, date, category) {
 	return link;
 };
 function searchRequest(title, city, category) {
+	calendar.destroy();
+	elSpinner.classList.remove("hide_spinner");
 	let url = checkSearchParam(title, city, "", category)
 	console.log(url);
 	axios.get(url)
@@ -195,7 +204,7 @@ function createEvents(response) {
 function createCalendar(arrEvents) {
 	var calendarEl = document.getElementById('calendar');
 	calendarEl.innerHTML = '';
-	var calendar = new FullCalendar.Calendar(calendarEl, {
+	calendar = new FullCalendar.Calendar(calendarEl, {
 	  plugins: [ 'dayGrid' ],
 	  defaultView: 'dayGridMonth',
 	  themeSystem: 'solar',
@@ -253,12 +262,20 @@ btnShowCat.addEventListener("click", function() {
    });
  // Close the dropdown if the user clicks outside of it CATEGORY
  window.onclick = function(event) {
-   if (!event.target.matches('.dropbtn') && !event.target.matches('.container_category') && !event.target.matches('.item_category')) {
-	   if (catWindow.classList.contains('show')) {
-		   catWindow.classList.remove('show');
-	   }
-   }
- };
+	if (!event.target.matches('.dropbtn')) {
+	  var dropdown = document.querySelector(".dropdown_content");
+		if (dropdown.classList.contains('show')) {
+			dropdown.classList.remove('show');
+		}
+	}
+  };
+//  window.onclick = function(event) {
+//    if (!event.target.matches('.dropbtn') && !event.target.matches('.container_category') && !event.target.matches('.item_category')) {
+// 	   if (catWindow.classList.contains('show')) {
+// 		   catWindow.classList.remove('show');
+// 	   }
+//    }
+//  };
 
 
 
