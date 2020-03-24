@@ -20,6 +20,9 @@ img, iframe
     padding-bottom: 20px
 .container_event_img
     width: 30%
+    display: flex
+    justify-content: center
+    align-items: center
 .event_img
     max-width: 100%
     height: auto
@@ -69,17 +72,16 @@ img, iframe
 .event_price span
     margin-left: 10px
     font-size: 22px
-.event_location
+.event_location, .event_promo
     display: flex
     align-items: center
     margin-right: 10px
-.event_location_icon
+.event_promo
+    margin-top: 20px
+.event_location_icon, .event_promo_icon
     width: 30px
     margin-right: 15px
-.event_address_by
-    display: flex
-    flex-direction: column
-.event_location_address
+.event_location_address, .event_promo_name
     font-size: 20px
     font-weight: 700
 .event_by

@@ -17,6 +17,7 @@ axios.get('https://eventafisha.com/api/v1/events/' + idEvent)
     setImg(response.data);
     setCategory(response.data);
     setTags(response.data);
+    setPromo(response.data);
   })
   .catch(function (error) {
     // handle error
@@ -79,7 +80,12 @@ function setTags(obj) {
     };
     tagsElement.innerHTML = tags;
 };
-
+function setPromo(obj) {
+    // console.log(obj.promo)
+    let promo = obj.promo;
+    let promoElement = document.querySelector(".event_promo_name");
+    promoElement.innerHTML = promo;
+}
 
 var searchIcon = document.getElementById("search_icon");
 var containerSearch = document.querySelector('.container_search');
