@@ -1,13 +1,11 @@
 let urlStringParams = window.location.search;
 let urlParams = new URLSearchParams(urlStringParams);
 let idEvent = urlParams.get("id");
-console.log(idEvent);
 
 axios
   .get("https://eventafisha.com/api/v1/events/" + idEvent)
   .then(function(response) {
     document.title = response.data.title;
-    console.log(response.data);
     setTitle(response.data);
     setDate(response.data);
     setLocation(response.data);
