@@ -23,6 +23,5 @@
 		"gulp-sass": "^4.0.2",
 		"gulp-uglify-es": "^2.0.0"
 	},
-	"dependencies": {
-	}
+	"dependencies": {}
 }

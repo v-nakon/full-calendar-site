@@ -1,217 +1,294 @@
 <!DOCTYPE html>
 <html lang="ru">
+  <head>
+    <meta charset="utf-8" />
 
-<head>
+    <title>eventcalend.com</title>
+    <meta name="description" content="" />
 
-	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
 
-	<title>eventcalend.com</title>
-	<meta name="description" content="">
+    <link rel="icon" href="img/favicon.png" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:700&display=swap"
+      rel="stylesheet"
+    />
 
-	<meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/reset.css" />
+    <link rel="stylesheet" href="css/styles.min.css" />
+    <link rel="stylesheet" href="css/main.min.css" />
+    <!-- <link href="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css/main2.min.css" />
+    <!-- <link href="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css" rel="stylesheet"> -->
+    <link rel="stylesheet" href="css/datepicker.css" />
 
-	<link rel="icon" href="img/favicon.png">
-	<link href="https://fonts.googleapis.com/css?family=Lato:700&display=swap" rel="stylesheet">
+    <script src="js/locales-all.js"></script>
+    <script src="js/main.min.js"></script>
+    <!-- <!-- <script src="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js"></script> -->
+    <script src="js/daygrid.min.js"></script>
+    <!-- <script src="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js"></script> -->
+    <script src="js/popper.min.js"></script>
+    <!-- <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script> -->
+    <script src="js/tooltip.min.js"></script>
+    <!-- <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script> -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/datepicker.js"></script>
+  </head>
 
-	<link rel="stylesheet" href="css/reset.css">
-	<link rel="stylesheet" href="css/styles.min.css">
-	<link rel="stylesheet" href="css/main.min.css"> <!-- <link href="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.css" rel="stylesheet"> -->
-	<link rel="stylesheet" href="css/main2.min.css"> <!-- <link href="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.css" rel="stylesheet"> -->
-	<link rel="stylesheet" href="css/datepicker.css">
-
-	<script src="js/locales-all.js"></script>
-	<script src="js/main.min.js"></script> <!-- <!-- <script src="https://unpkg.com/@fullcalendar/core@4.3.1/main.min.js"></script> --> 
-	<script src="js/daygrid.min.js"></script> <!-- <script src="https://unpkg.com/@fullcalendar/daygrid@4.3.0/main.min.js"></script> -->
-	<script src="js/popper.min.js"></script> <!-- <script src="https://unpkg.com/popper.js/dist/umd/popper.min.js"></script> -->
-	<script src="js/tooltip.min.js"></script><!-- <script src="https://unpkg.com/tooltip.js/dist/umd/tooltip.min.js"></script> -->
-	<script src="js/jquery.min.js"></script>
-	<script src="js/datepicker.js"></script>
-
-</head>
-
-<body>
-	<header>
-        <div class="container_header">
-			<a href="/">
-            	<div class="container_logo">
-            	    <svg class="logo_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#EE1522" d="M12 0c-3.148 0-6 2.553-6 5.702 0 3.148 2.602 6.907 6 12.298 3.398-5.391 6-9.15 6-12.298 0-3.149-2.851-5.702-6-5.702zm0 8c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2zm8 12c0 2.209-3.581 4-8 4s-8-1.791-8-4c0-1.602 1.888-2.98 4.608-3.619l1.154 1.824c-.401.068-.806.135-1.178.242-3.312.949-3.453 2.109-.021 3.102 2.088.603 4.777.605 6.874-.001 3.619-1.047 3.164-2.275-.268-3.167-.296-.077-.621-.118-.936-.171l1.156-1.828c2.723.638 4.611 2.016 4.611 3.618z"/></svg>
-            	    <div class="logo_text">eventcalend</div>
-				</div>
-			</a>
-            <div class="container_search">
-                <div class="search_input">
-                    <select name="city" id="location">
-						<option value="">Все города</option>
-                      </select>
-                      <input type="text" id="event_name" placeholder="Название..">
-                      <input type="submit" id="btn_search" value="Поиск">
-                </div>
-                <div class="search_categories">
-				<div class="search_category color_active_cat" id="search_cat_all">Все</div>
-				<div class="search_category" id="search_cat_main1">Концерты</div>
-				<div class="search_category" id="search_cat_main2">Дизайн</div>
-				<div class="search_category border_none dropdown_window">
-					<i class="arrow_down dropbtn"></i>
-					<div class="dropdown_content">
-						<div class="container_category">
-						</div>
-					</div>
-				</div>
-				</div>
-			</div>
-			<div class="container_create_search">
-				<div class="container_create_event">
-					<svg class="create_event_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="#555" d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3.994 12.964l3.106 3.105-4.112.931 1.006-4.036zm9.994-3.764l-5.84 5.921-3.202-3.202 5.841-5.919 3.201 3.2z"/></svg>
-					<div class="create_event_text">Создать</div>
-				</div>
-				<svg id="search_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path path fill="#555" d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"/></svg>
-			</div>
-		</div>
-	</header>
-	<!-- MODAL CREATE EVENT -->
-	<div class="container_modal">
-		<div class="modal_content">
-			<div class="modal_header">
-				<div class="modal_title">Создание мероприятия</div>
-				<span class="close_modal">&times;</span>
-			</div>
-			<div class="modal_inputs">
-				<div class="form_group">
-					<label for="modal_event_name">Название мероприятия</label>
-					<input type="text" id="modal_event_name" placeholder="Название..">
-					<!-- <span class="error_msg">Поле "Название мероприятия" не должно быть пустым!</span> -->
-					<span id="error_title" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_start_date">Дата начала мероприятия</label>
-					<input type="text" class="datepicker_event_start" placeholder="Дата начала.."/>
-					<span id="error_start_date" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_end_date">Дата конца мероприятия</label>
-					<input type="text" class="datepicker_event_end" placeholder="Дата конца.."/>
-					<span id="error_end_date" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_time">Время начала мероприятия</label>
-					<input type="text" class="datepicker_time" placeholder="Время начала..">
-					<span id="error_time" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_price">Цена мероприятия</label>
-					<input type="text" id="modal_price" placeholder="Цена..">
-					<span id="error_price" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_category">Категория мероприятия</label>
-					<select id="modal_category" name="modal_category">
-						<option value="">Выберите категорию мероприятия</option>
-					</select>
-					<span id="error_category" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_tags">Теги мероприятия</label>
-					<select id="modal_tags" name="modal_tags" multiple></select>
-					<span id="error_tags" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_city">Город мероприятия</label>
-					<select id="modal_city" name="modal_city">
-						<option value="">Город мероприятия</option>
-					</select>
-					<span id="error_city" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_address">Адрес мероприятия</label>
-					<input type="text" id="modal_address" placeholder="Название..">
-					<span id="error_address" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_description">Описание мероприятия</label>
-					<textarea id="modal_description" placeholder="Описание.."></textarea>
-					<span id="error_description" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_img">Главная картинка мероприятия</label>
-					<input type="file" id="modal_img" accept="image/*" onchange="getBase64()">
-					<span id="error_img" class="error_msg"></span>
-				</div>
-				<!-- <div class="form_group">
+  <body>
+    <header>
+      <div class="container_header">
+        <a href="/">
+          <div class="container_logo">
+            <svg
+              class="logo_icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#EE1522"
+                d="M12 0c-3.148 0-6 2.553-6 5.702 0 3.148 2.602 6.907 6 12.298 3.398-5.391 6-9.15 6-12.298 0-3.149-2.851-5.702-6-5.702zm0 8c-1.105 0-2-.895-2-2s.895-2 2-2 2 .895 2 2-.895 2-2 2zm8 12c0 2.209-3.581 4-8 4s-8-1.791-8-4c0-1.602 1.888-2.98 4.608-3.619l1.154 1.824c-.401.068-.806.135-1.178.242-3.312.949-3.453 2.109-.021 3.102 2.088.603 4.777.605 6.874-.001 3.619-1.047 3.164-2.275-.268-3.167-.296-.077-.621-.118-.936-.171l1.156-1.828c2.723.638 4.611 2.016 4.611 3.618z"
+              />
+            </svg>
+            <div class="logo_text">eventcalend</div>
+          </div>
+        </a>
+        <div class="container_search">
+          <div class="search_input">
+            <select name="city" id="location">
+              <option value="">Все города</option>
+            </select>
+            <input type="text" id="event_name" placeholder="Название.." />
+            <input type="submit" id="btn_search" value="Поиск" />
+          </div>
+          <div class="search_categories">
+            <div class="search_category color_active_cat" id="search_cat_all">
+              Все
+            </div>
+            <div class="search_category" id="search_cat_main1">Концерты</div>
+            <div class="search_category" id="search_cat_main2">
+              Конференции
+            </div>
+            <div class="search_category" id="search_cat_main3">
+              Семинары
+            </div>
+            <div class="search_category border_none dropdown_window">
+              <i class="arrow_down dropbtn"></i>
+              <div class="dropdown_content">
+                <div class="container_category"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container_create_search">
+          <div class="container_create_event">
+            <svg
+              class="create_event_icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+            >
+              <path
+                fill="#555"
+                d="M12 2c5.514 0 10 4.486 10 10s-4.486 10-10 10-10-4.486-10-10 4.486-10 10-10zm0-2c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-3.994 12.964l3.106 3.105-4.112.931 1.006-4.036zm9.994-3.764l-5.84 5.921-3.202-3.202 5.841-5.919 3.201 3.2z"
+              />
+            </svg>
+            <div class="create_event_text">Создать</div>
+          </div>
+          <svg
+            id="search_icon"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              path
+              fill="#555"
+              d="M23.809 21.646l-6.205-6.205c1.167-1.605 1.857-3.579 1.857-5.711 0-5.365-4.365-9.73-9.731-9.73-5.365 0-9.73 4.365-9.73 9.73 0 5.366 4.365 9.73 9.73 9.73 2.034 0 3.923-.627 5.487-1.698l6.238 6.238 2.354-2.354zm-20.955-11.916c0-3.792 3.085-6.877 6.877-6.877s6.877 3.085 6.877 6.877-3.085 6.877-6.877 6.877c-3.793 0-6.877-3.085-6.877-6.877z"
+            />
+          </svg>
+        </div>
+      </div>
+    </header>
+    <!-- MODAL CREATE EVENT -->
+    <div class="container_modal">
+      <div class="modal_content">
+        <div class="modal_header">
+          <div class="modal_title">Создание мероприятия</div>
+          <span class="close_modal">&times;</span>
+        </div>
+        <div class="modal_inputs">
+          <div class="form_group">
+            <label for="modal_event_name">Название мероприятия</label>
+            <input type="text" id="modal_event_name" placeholder="Название.." />
+            <!-- <span class="error_msg">Поле "Название мероприятия" не должно быть пустым!</span> -->
+            <span id="error_title" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_start_date">Дата начала мероприятия</label>
+            <input
+              type="text"
+              class="datepicker_event_start"
+              placeholder="Дата начала.."
+            />
+            <span id="error_start_date" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_end_date">Дата конца мероприятия</label>
+            <input
+              type="text"
+              class="datepicker_event_end"
+              placeholder="Дата конца.."
+            />
+            <span id="error_end_date" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_time">Время начала мероприятия</label>
+            <input
+              type="text"
+              class="datepicker_time"
+              placeholder="Время начала.."
+            />
+            <span id="error_time" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_price">Цена мероприятия</label>
+            <input type="text" id="modal_price" placeholder="Цена.." />
+            <span id="error_price" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_category">Категория мероприятия</label>
+            <select id="modal_category" name="modal_category">
+              <option value="">Выберите категорию мероприятия</option>
+            </select>
+            <span id="error_category" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_tags">Теги мероприятия</label>
+            <select id="modal_tags" name="modal_tags" multiple></select>
+            <span id="error_tags" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_city">Город мероприятия</label>
+            <select id="modal_city" name="modal_city">
+              <option value="">Город мероприятия</option>
+            </select>
+            <span id="error_city" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_address">Адрес мероприятия</label>
+            <input type="text" id="modal_address" placeholder="Название.." />
+            <span id="error_address" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_description">Описание мероприятия</label>
+            <textarea
+              id="modal_description"
+              placeholder="Описание.."
+            ></textarea>
+            <span id="error_description" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_img">Главная картинка мероприятия</label>
+            <input
+              type="file"
+              id="modal_img"
+              accept="image/*"
+              onchange="getBase64()"
+            />
+            <span id="error_img" class="error_msg"></span>
+          </div>
+          <!-- <div class="form_group">
 					<label for="modal_organizer">Организатор мероприятия</label>
 					<input type="text" id="modal_organizer" placeholder="Организатор.." required>
 				</div> -->
-				<div class="form_group">
-					<label for="modal_url">Ссылка на покупку билета</label>
-					<input type="text" id="modal_url" placeholder="Ссылка..">
-					<span id="error_url" class="error_msg"></span>
-				</div>
-				<div class="modal_title">Данные для обратной связи</div>
-				<div class="form_group">
-					<label for="modal_client_name">Имя</label>
-					<input type="text" id="modal_client_name" placeholder="Введите имя..">
-					<span id="error_client_name" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_client_email">Электронная почта</label>
-					<input type="email" id="modal_client_email" placeholder="Введите Email..">
-					<span id="error_client_email" class="error_msg"></span>
-				</div>
-				<div class="form_group">
-					<label for="modal_client_tel">Номер телефона</label>
-					<input type="text" id="modal_client_tel" placeholder="Введите номер телефон..">
-				</div>
-				<!-- <input id="submit_create_event" type="submit" value="Создать" onclick="getInputValue()"> -->
-				<!-- <!-- <button  id="submit_create_event" value="Создать" onclick="getInputValue()">Создать</button> -->
-				<button id="submit_create_event" value="Создать">Создать</button>
-			</div>
-		
-		</div>
-	</div>
-	<!-- END MODAL CREATE EVENT -->
-	<!-- MODAL MODERATION EVENT -->
-	<div class="container_modal_moderation">
-		<div class="modal_content_moderation">
-			<div class="modal_header">
-				<div class="modal_title">Мероприятие отправлено на модерацию!</div>
-				<span class="close_modal_moderation">&times;</span>
-			</div>
-			<div>После успешной модерации Ваше мероприятие появится на нашем сайте!</div>
-		</div>
-	</div>
-	<!-- END MODAL MODERATION EVENT -->
-	<!-- MODAL ERROR MODERATION EVENT -->
-	<div class="container_modal_error">
-		<div class="modal_content_error">
-			<div class="modal_header">
-				<div class="modal_title">Мероприятие не было создано!</div>
-				<span class="close_modal_error">&times;</span>
-			</div>
-			<div>Попробуйте создать мероприятие немного позже!</div>
-		</div>
-	</div>
-	<!-- END ERROR MODAL MODERATION EVENT -->
-	<!-- MODAL NOT FOUND EVENT -->
-	<div class="container_modal_notfound">
-		<div class="modal_content_notfound">
-			<div class="modal_header">
-				<div class="modal_title">Мероприятие не найдено!</div>
-				<span class="close_modal_notfound">&times;</span>
-			</div>
-			<div>По Вашему запросу мероприятие не найдено!</div>
-		</div>
-	</div>
-	<!-- END MODAL NOT FOUND EVENT -->
-	<!-- start spinner -->
-	<div class="container_spinner">
-		<div class="lds-facebook"><div></div><div></div><div></div></div>
-	</div>
-	<!-- end spinner -->
-	<div class="calendar_bg">
-		<div id="calendar"></div>
-	</div>
-	<div class="footer"></div>
-	<script src="js/axios.min.js"></script>
-	<script src="js/scripts.min.js"></script>
-	<script src="js/modal-window.js"></script>
-</body>
+          <div class="form_group">
+            <label for="modal_url">Ссылка на покупку билета</label>
+            <input type="text" id="modal_url" placeholder="Ссылка.." />
+            <span id="error_url" class="error_msg"></span>
+          </div>
+          <div class="modal_title">Данные для обратной связи</div>
+          <div class="form_group">
+            <label for="modal_client_name">Имя</label>
+            <input
+              type="text"
+              id="modal_client_name"
+              placeholder="Введите имя.."
+            />
+            <span id="error_client_name" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_client_email">Электронная почта</label>
+            <input
+              type="email"
+              id="modal_client_email"
+              placeholder="Введите Email.."
+            />
+            <span id="error_client_email" class="error_msg"></span>
+          </div>
+          <div class="form_group">
+            <label for="modal_client_tel">Номер телефона</label>
+            <input
+              type="text"
+              id="modal_client_tel"
+              placeholder="Введите номер телефон.."
+            />
+          </div>
+          <!-- <input id="submit_create_event" type="submit" value="Создать" onclick="getInputValue()"> -->
+          <!-- <!-- <button  id="submit_create_event" value="Создать" onclick="getInputValue()">Создать</button> -->
+          <button id="submit_create_event" value="Создать">Создать</button>
+        </div>
+      </div>
+    </div>
+    <!-- END MODAL CREATE EVENT -->
+    <!-- MODAL MODERATION EVENT -->
+    <div class="container_modal_moderation">
+      <div class="modal_content_moderation">
+        <div class="modal_header">
+          <div class="modal_title">Мероприятие отправлено на модерацию!</div>
+          <span class="close_modal_moderation">&times;</span>
+        </div>
+        <div>
+          После успешной модерации Ваше мероприятие появится на нашем сайте!
+        </div>
+      </div>
+    </div>
+    <!-- END MODAL MODERATION EVENT -->
+    <!-- MODAL ERROR MODERATION EVENT -->
+    <div class="container_modal_error">
+      <div class="modal_content_error">
+        <div class="modal_header">
+          <div class="modal_title">Мероприятие не было создано!</div>
+          <span class="close_modal_error">&times;</span>
+        </div>
+        <div>Попробуйте создать мероприятие немного позже!</div>
+      </div>
+    </div>
+    <!-- END ERROR MODAL MODERATION EVENT -->
+    <!-- MODAL NOT FOUND EVENT -->
+    <div class="container_modal_notfound">
+      <div class="modal_content_notfound">
+        <div class="modal_header">
+          <div class="modal_title">Мероприятие не найдено!</div>
+          <span class="close_modal_notfound">&times;</span>
+        </div>
+        <div>По Вашему запросу мероприятие не найдено!</div>
+      </div>
+    </div>
+    <!-- END MODAL NOT FOUND EVENT -->
+    <!-- start spinner -->
+    <div class="container_spinner">
+      <div class="lds-facebook">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+    <!-- end spinner -->
+    <div class="calendar_bg">
+      <div id="calendar"></div>
+    </div>
+    <div class="footer"></div>
+    <script src="js/axios.min.js"></script>
+    <script src="js/scripts.min.js"></script>
+    <script src="js/modal-window.js"></script>
+  </body>
 </html>
