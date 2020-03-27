@@ -165,7 +165,7 @@ input[type=submit]:hover
 .search_categories
     display: flex
 .search_category
-    margin: 7px
+    margin: 7px 3px 7px 0
     font-weight: 600
     color: #555
     padding: 0 4px
@@ -302,7 +302,7 @@ input[type=submit]:hover
 .dropdown_content
 	display: none
 	position: absolute
-	right: -325px
+	right: -125px
 	top: 30px
 	background-color: #fff
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
@@ -314,20 +314,11 @@ input[type=submit]:hover
 	flex-direction: row
 	flex-wrap: wrap
 	width: 400px
-.container_category_mob
-    display: flex
-    width: 280px
-    flex-direction: row
-    flex-wrap: wrap
 .item_category
     font-size: 15px
     color: black
     padding: 10px 14px
     min-width: 170px
-.container_category_mob .item_category
-    font-size: 12px
-    padding: 8px 12px
-    min-width: 110px
 .item_category:hover
 	color: $main-color
 .show
@@ -406,9 +397,14 @@ input[type=submit]:hover
         width: 40%
     .modal_content_moderation, .modal_content_error, .modal_content_notfound
         width: 90%
+    .search_category
+        font-size: 11px
 @media (max-width: 576px)
     #search_icon
         display: block
+        width: 21px
+    .create_event_icon
+        width: 20px
     .container_search
         display: none
     .container_header
@@ -425,3 +421,16 @@ input[type=submit]:hover
         margin-right: 10px
     .create_event_text, .popper, .tooltip
         display: none
+    #search_cat_main3
+        display: none
+    #event_name, #location
+        max-width: 85px
+    .container_category
+        width: 280px
+    .item_category
+        font-size: 12px
+        padding: 8px 12px
+        min-width: 110px
+    .dropdown_content
+        right: -60px
+    
