@@ -208,7 +208,7 @@ input[type=submit]:hover
     color: #555
 // MODAL CREATE EVENT
 /* The Modal (background) */
-.container_modal, .container_modal_moderation, .container_modal_error, .container_modal_notfound
+.container_modal, .container_modal_moderation, .container_modal_error, .container_modal_notfound, .container_modal_report
     display: none
     position: fixed
     z-index: 99
@@ -225,11 +225,11 @@ input[type=submit]:hover
 .modal_content
     @include modal_content
     width: 60%
-.modal_content_moderation, .modal_content_error, .modal_content_notfound
+.modal_content_moderation, .modal_content_error, .modal_content_notfound, .modal_content_report
     @include modal_content
     width: 40%
 /* The Close Button */
-.close_modal, .close_modal_moderation, .close_modal_error, .close_modal_notfound
+.close_modal, .close_modal_moderation, .close_modal_error, .close_modal_notfound, .close_modal_report
     color: #aaaaaa
     float: right
     font-size: 28px
@@ -241,7 +241,9 @@ input[type=submit]:hover
 .close_modal_error:hover,
 .close_modal_error:focus,
 .close_modal_notfound:hover,
-.close_modal_notfound:focus
+.close_modal_notfound:focus,
+.close_modal_report:hover,
+.close_modal_report:focus
     color: #000
     text-decoration: none
     cursor: pointer
@@ -249,11 +251,12 @@ input[type=submit]:hover
     @include flex-center
 .modal_title
     font-size: 18px
-#submit_create_event
+#submit_create_event, #submit_sent_report
     @include input_submit
     width: 20%
     margin-top: 10px
-#submit_create_event:hover
+#submit_create_event:hover,
+#submit_sent_report:hover
     opacity: 0.7
 // END MODAL CREATE EVENT
 
@@ -363,6 +366,20 @@ input[type=submit]:hover
         top: 24px
         height: 32px   
 // end spinner
+// start modal report
+.report_label span 
+    color: red
+#modal_is_organizer
+    margin: 10px 10px 15px 10px
+.report_success, .report_error
+    display: none
+    text-align: center
+    color: #6EB838
+.report_error
+    color: #BF4C2D
+.report_success p, .report_error p
+    margin: 0
+// end modal report
 @media (max-width: 780px)
     header
         height: 60px
@@ -393,7 +410,8 @@ input[type=submit]:hover
         padding: 0 4px
     .modal_content
         width: 90%
-    #submit_create_event
+    #submit_create_event,
+    #submit_sent_report
         width: 40%
     .modal_content_moderation, .modal_content_error, .modal_content_notfound
         width: 90%
