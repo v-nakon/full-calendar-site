@@ -1,10 +1,11 @@
 getAllEvents();
 getCities("location");
 getCategories();
+getSubjects();
 var calendar;
 let btnSearch = document.getElementById("btn_search");
 btnSearch.addEventListener("click", () =>
-  searchTitleCity("event_name", "location")
+  searchTitleCity("event_name", "location", "subject_search")
 );
 
 var modalNotFound = document.querySelector(".container_modal_notfound");
@@ -21,7 +22,7 @@ function getAllEvents() {
     .then(function(response) {
       // handle success
       let allEvent = response.data;
-      console.log(response.data.length);
+      // console.log(response.data.length);
       if (response.data.length === 0) {
         modalNotFound.style.display = "block";
       } else {
@@ -69,6 +70,22 @@ function getCategories() {
       // always executed
     });
 }
+function getSubjects() {
+  axios
+    .get("https://eventafisha.com/api/v1/subjects")
+    .then(function(response) {
+      for (let item in response.data) {
+        addOptionSelect(response.data[item], "subject_search");
+      }
+    })
+    .catch(function(error) {
+      // handle error
+      console.log(error);
+    })
+    .then(function() {
+      // always executed
+    });
+}
 // categories for search
 function addCatToSearch(item, elementTo) {
   // console.log(item);
@@ -83,16 +100,21 @@ function addCatToSearch(item, elementTo) {
 function addEventToElement(element, catId) {
   element.addEventListener("click", function() {
     delActiveColor();
-    console.log("CAT - ", catId);
+    // console.log("CAT - ", catId);
     element.classList.add("color_active_cat");
     document.querySelector(".arrow_down").classList.add("color_active_cat");
     categorySearch = catId;
-    searchRequest(nameEventSearch, cityEventSearch, categorySearch);
+    searchRequest(
+      nameEventSearch,
+      cityEventSearch,
+      categorySearch,
+      subjectSearch
+    );
   });
 }
 function delActiveColor() {
   let arrActiveColor = document.querySelectorAll(".color_active_cat");
-  console.log("arr", arrActiveColor);
+  // console.log("arr", arrActiveColor);
   arrActiveColor.forEach(function(el) {
     el.classList.remove("color_active_cat");
     // console.log("delete class")
@@ -103,6 +125,7 @@ function delActiveColor() {
 var nameEventSearch = "";
 var cityEventSearch = "";
 var categorySearch = "";
+var subjectSearch = "";
 var arrElCat = [
   {
     el: document.querySelector("#search_cat_all"),
@@ -127,12 +150,17 @@ function addListenerToArrEl(arr) {
       delActiveColor();
       arr[i].el.classList.add("color_active_cat");
       categorySearch = arr[i].id;
-      searchRequest(nameEventSearch, cityEventSearch, categorySearch);
+      searchRequest(
+        nameEventSearch,
+        cityEventSearch,
+        categorySearch,
+        subjectSearch
+      );
     });
   }
 }
 addListenerToArrEl(arrElCat);
-function checkSearchParam(title, city, date, category) {
+function checkSearchParam(title, city, date, category, subject) {
   let link = "https://eventafisha.com/api/v1/events?";
   if (title !== "") {
     link += "&title=" + title;
@@ -146,17 +174,20 @@ function checkSearchParam(title, city, date, category) {
   if (category !== "") {
     link += "&category_id=" + category;
   }
+  if (subject !== "") {
+    link += "&subject_id=" + subject;
+  }
   return link;
 }
-function searchRequest(title, city, category) {
+function searchRequest(title, city, category, subject) {
   calendar.destroy();
   elSpinner.classList.remove("hide_spinner");
-  let url = checkSearchParam(title, city, "", category);
-  console.log(url);
+  let url = checkSearchParam(title, city, "", category, subject);
+  // console.log(url);
   axios
     .get(url)
     .then(function(response) {
-      console.log(response);
+      // console.log(response);
       let searchResponse = response.data;
       if (response.data.length === 0) {
         modalNotFound.style.display = "block";
@@ -177,10 +208,16 @@ function addOptionSelect(item, elementSelect) {
   selectCategory.add(option);
 }
 // для поиска по названию/городу
-function searchTitleCity(titleEl, cityEl) {
+function searchTitleCity(titleEl, cityEl, subjectEl) {
   nameEventSearch = document.getElementById(titleEl).value;
   cityEventSearch = document.getElementById(cityEl).value;
-  searchRequest(nameEventSearch, cityEventSearch, categorySearch);
+  subjectSearch = document.getElementById(subjectEl).value;
+  searchRequest(
+    nameEventSearch,
+    cityEventSearch,
+    categorySearch,
+    subjectSearch
+  );
 }
 function sliceText(text) {
   let sliced = text.replace(/<\/?[^>]+>/g, "");
@@ -214,7 +251,7 @@ function createEvents(response) {
       `</div> </a>`;
     arrEvents.push(objEvent);
   }
-  console.log(arrEvents);
+  // console.log(arrEvents);
   createCalendar(arrEvents);
 }
 
