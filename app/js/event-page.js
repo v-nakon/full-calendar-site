@@ -79,7 +79,7 @@ function setBuyLink(obj) {
   let buyLink = obj.buy_link;
   let buyBtn = document.querySelector(".btn_buy");
   let id = obj.id;
-  let redirectLink = "https://eventafisha.com/events/" + id + "/redirect-page";
+  let redirectLink = "/redirect-page.html?id=" + id;
   if (buyLink === null) {
     buyBtn.classList.add("hide_element");
   } else {
