@@ -1,30 +1,54 @@
+import { getEvent } from "./helpers/requests.js";
+import { orderNumber } from "./helpers/requests.js";
+
 let urlStringParams = window.location.search;
 let urlParams = new URLSearchParams(urlStringParams);
 let idEvent = urlParams.get("id");
 
-axios
-  .get("https://eventafisha.com/api/v1/events/" + idEvent)
-  .then(function(response) {
-    checkMetaData(response.data);
-    document.title = response.data.title;
-    setTitle(response.data);
-    setDate(response.data);
-    setLocation(response.data);
-    setPrice(response.data);
-    setBuyLink(response.data);
-    setDescription(response.data);
-    setImg(response.data);
-    setCategory(response.data);
-    setTags(response.data);
-    setPromo(response.data);
-  })
-  .catch(function(error) {
-    // handle error
-    console.log(error);
-  })
-  .then(function() {
-    // always executed
-  });
+getEventData(idEvent);
+function getEventData(idEvent) {
+  getEvent(idEvent)
+    .then((response) => {
+      checkMetaData(response.data);
+      document.title = response.data.title;
+      setTitle(response.data);
+      setDate(response.data);
+      setLocation(response.data);
+      setPrice(response.data);
+      setBuyLink(response.data);
+      setDescription(response.data);
+      setImg(response.data);
+      setCategory(response.data);
+      setTags(response.data);
+      setPromo(response.data);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+// axios
+//   .get("https://eventafisha.com/api/v1/events/" + idEvent)
+//   .then(function (response) {
+//     checkMetaData(response.data);
+//     document.title = response.data.title;
+//     setTitle(response.data);
+//     setDate(response.data);
+//     setLocation(response.data);
+//     setPrice(response.data);
+//     setBuyLink(response.data);
+//     setDescription(response.data);
+//     setImg(response.data);
+//     setCategory(response.data);
+//     setTags(response.data);
+//     setPromo(response.data);
+//   })
+//   .catch(function (error) {
+//     // handle error
+//     console.log(error);
+//   })
+//   .then(function () {
+//     // always executed
+//   });
 function checkMetaData(response) {
   if (response.seo.meta_title !== null) {
     setMetaData("title", response.seo.meta_title);
@@ -78,12 +102,12 @@ function setPrice(obj) {
 function setBuyLink(obj) {
   let buyLink = obj.buy_link;
   let buyBtn = document.querySelector(".btn_buy");
-  let id = obj.id;
-  let redirectLink = "/redirect-page.html?id=" + id;
   if (buyLink === null) {
     buyBtn.classList.add("hide_element");
   } else {
-    buyBtn.addEventListener("click", () => window.open(redirectLink));
+    buyBtn.addEventListener("click", function () {
+      setOrderNumber(idEvent);
+    });
   }
 }
 function setDescription(obj) {
@@ -132,15 +156,29 @@ function renameBtn() {
   let btn = document.querySelector(".btn_buy");
   btn.innerHTML = "РЕГИСТРАЦИЯ";
 }
-var searchIcon = document.getElementById("search_icon");
-var containerSearch = document.querySelector(".container_search");
-var containerLogo = document.querySelector(".container_logo");
-searchIcon.addEventListener("click", function() {
-  if (!containerSearch.classList.contains("show")) {
-    containerSearch.classList.add("show");
-    containerLogo.classList.add("hide");
-  } else {
-    containerSearch.classList.remove("show");
-    containerLogo.classList.remove("hide");
-  }
-});
+function setOrderNumber(idEvent) {
+  orderNumber(idEvent)
+    .then((response) => {
+      // console.log("Num order", response)
+      goRedirectPage(idEvent);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+function goRedirectPage(id) {
+  let redirectLink = "/redirect-page.html?id=" + id;
+  document.location.href = redirectLink;
+}
+// var searchIcon = document.getElementById("search_icon");
+// var containerSearch = document.querySelector(".container_search");
+// var containerLogo = document.querySelector(".container_logo");
+// searchIcon.addEventListener("click", function () {
+//   if (!containerSearch.classList.contains("show")) {
+//     containerSearch.classList.add("show");
+//     containerLogo.classList.add("hide");
+//   } else {
+//     containerSearch.classList.remove("show");
+//     containerLogo.classList.remove("hide");
+//   }
+// });
