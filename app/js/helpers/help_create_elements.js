@@ -66,7 +66,7 @@ function sliceText(text, count) {
 
 function addEventToEl(element, id) {
   let btnEl = element.querySelector(".btn_buy_ticket");
-  btnEl.addEventListener("click", function() {
+  btnEl.addEventListener("click", function () {
     let urlEvent = window.location.href + "event-page.html?id=" + id;
     window.open(urlEvent);
   });
@@ -79,11 +79,11 @@ function checkCity(objCity) {
     return objCity.title + ", ";
   }
 }
-export function delActiveColor(className) {
-  let arrActiveColor = document.querySelectorAll("." + className);
-  // console.log("arr", arrActiveColor)
-  arrActiveColor.forEach(function(el) {
-    el.classList.remove(className);
+export function delActiveColor() {
+  let arrActiveColor = document.querySelectorAll(".color_active_cat");
+  // console.log("arr", arrActiveColor);
+  arrActiveColor.forEach(function (el) {
+    el.classList.remove("color_active_cat");
     // console.log("delete class")
   });
 }
