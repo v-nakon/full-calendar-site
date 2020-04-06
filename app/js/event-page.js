@@ -24,6 +24,10 @@ function getEventData(idEvent) {
     })
     .catch((error) => {
       console.log(error);
+      document.querySelector(".container_event").classList.add("hide_element");
+      document
+        .querySelector(".container_notfound")
+        .classList.remove("hide_element");
     });
 }
 // axios
@@ -79,8 +83,12 @@ function setDate(obj) {
   let startDate = new Date(obj.start_date);
   let endDate = new Date(obj.end_date);
   let dateElement = document.querySelector(".event_date");
-  dateElement.innerHTML =
-    startDate.toLocaleDateString() + " - " + endDate.toLocaleDateString();
+  if (startDate.toLocaleDateString() === endDate.toLocaleDateString()) {
+    dateElement.innerHTML = startDate.toLocaleDateString();
+  } else {
+    dateElement.innerHTML =
+      startDate.toLocaleDateString() + " - " + endDate.toLocaleDateString();
+  }
 }
 function setLocation(obj) {
   let location = obj.address;
