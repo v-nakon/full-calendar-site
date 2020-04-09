@@ -226,12 +226,7 @@ function pushEnterBtn(event) {
   if (event.which == 13 || event.keyCode == 13) {
     let getElTag = document.activeElement.tagName;
     if (getElTag === "INPUT" || getElTag === "SELECT") {
-      searchRequest(
-        nameEventSearch,
-        cityEventSearch,
-        categorySearch,
-        subjectSearch
-      );
+      searchEvent("event_name", "location", "subject_search");
     }
   }
 }
