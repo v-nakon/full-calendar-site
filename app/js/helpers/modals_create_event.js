@@ -7,6 +7,7 @@ import { addOptionSelect } from "./help_create_elements.js";
 
 var modal = document.querySelector(".container_modal");
 var createEventBtn = document.querySelector(".container_create_event");
+var footerCreateEvent = document.querySelector(".footer_create_event");
 var closeModal = document.querySelector(".close_modal");
 var modalModeration = document.querySelector(".container_modal_moderation");
 var modalModerationError = document.querySelector(".container_modal_error");
@@ -40,6 +41,9 @@ getCitiesData();
 getSubjectsData();
 
 createEventBtn.addEventListener("click", function () {
+  modal.style.display = "block";
+});
+footerCreateEvent.addEventListener("click", function () {
   modal.style.display = "block";
 });
 closeModal.addEventListener("click", function () {

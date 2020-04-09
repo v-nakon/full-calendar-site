@@ -135,23 +135,59 @@ img, iframe
 .content
     font-size: 16px
     color: #555
+.container_footer
+    width: 1024px
+    margin: auto
 footer
     border-top: 2px solid
     padding: 10px 0
-.footer_log_report
-    display: flex
-    justify-content: space-evenly
-    align-items: center
+    width: 100%
+footer a
+	text-decoration: none !important
+	color: transparent !important
+.footer_logo_icons
+	@include flex-center
+.footer_icon
+	margin: 0 3px
+.footer_text_blocks
+	display: flex
+	justify-content: space-evenly
+	margin: 20px 0
+.footer_text_block, .footer_text_block hr
+	width: 220px
+	color: #000000
+	font-size: 12px
+	display: flex
+	flex-direction: column
+.footer_text_block a
+	color: #000000 !important
+.footer_text_block .title
+	text-transform: uppercase
+	font-size: 13px
+.footer_text_block .text
+	font-size: 12px
+	padding: 4px 0
+	cursor: pointer
+.footer_text_block .text:hover
+	color: #666 !important
 .footer_text
-    font-size: 12px
-    margin: 0 auto
-    text-align: center
-.footer_copyright
-    padding-bottom: 10px
-.btn_report_error
-    font-size: 13px
-    font-weight: 600
-    cursor: pointer
+	color: #000000
+	font-size: 12px
+.footer_text_copy
+	color: #000000
+	font-size: 16px
+	text-align: center
+	padding: 10px 0
+// .footer_log_report
+//     display: flex
+//     justify-content: space-evenly
+//     align-items: center
+// .footer_text
+//     font-size: 12px
+//     margin: 0 auto
+//     text-align: center
+// .footer_copyright
+//     padding-bottom: 10px
 .hide_element
     display: none !important
 .content p, .description_first p, .description_second p,
@@ -162,7 +198,7 @@ footer
     .event_title
         font-size: 22px
 @media (max-width: 1200px)
-    .container_event_top
+    .container_event_top, .container_footer
         width: 95%
 @media (max-width: 992px)
     .event_info
@@ -183,6 +219,12 @@ footer
         width: 20px
     .event_content
         width: 100%
+    .footer_text_blocks
+        flex-direction: column
+        margin: 0
+        align-items: center
+    .footer_text_block
+        margin: 10px 0
 @media (max-width: 576px)
     .container_event_top
         flex-direction: column

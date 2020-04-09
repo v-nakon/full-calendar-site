@@ -2,17 +2,18 @@ import { addOptionSelect } from "./helpers/help_create_elements.js";
 import { getCategories } from "./helpers/requests.js";
 import { getCities } from "./helpers/requests.js";
 import { getSubjects } from "./helpers/requests.js";
+import { getAllEvents } from "./helpers/requests.js";
+import { searchEvents } from "./helpers/requests.js";
 import { addCatToSearch } from "./helpers/category_search_block.js";
 import { delActiveColor } from "./helpers/help_create_elements.js";
 
-getAllEvents();
 getCitiesData();
 getCategoriesData();
 getSubjectsData();
 var calendar;
 let btnSearch = document.getElementById("btn_search");
 btnSearch.addEventListener("click", () =>
-  searchTitleCity("event_name", "location", "subject_search")
+  searchEvent("event_name", "location", "subject_search")
 );
 
 var modalNotFound = document.querySelector(".container_modal_notfound");
@@ -23,10 +24,9 @@ closeModalNotfound.addEventListener("click", function () {
   document.location.href = "/";
 });
 var elSpinner = document.querySelector(".container_spinner");
-function getAllEvents() {
-  axios
-    .get("https://eventafisha.com/api/v1/events")
-    .then(function (response) {
+function getAllEventsData() {
+  getAllEvents()
+    .then((response) => {
       // handle success
       let allEvent = response.data;
       // console.log(response.data.length);
@@ -37,12 +37,8 @@ function getAllEvents() {
         elSpinner.classList.add("hide_spinner");
       }
     })
-    .catch(function (error) {
-      // handle error
+    .catch((error) => {
       console.log(error);
-    })
-    .then(function () {
-      // always executed
     });
 }
 function getCitiesData() {
@@ -107,14 +103,14 @@ function checkSearchParam(title, city, date, category, subject) {
   return link;
 }
 export function searchRequest(title, city, category, subject) {
-  calendar.destroy();
+  // calendar.destroy();
   elSpinner.classList.remove("hide_spinner");
   let url = checkSearchParam(title, city, "", category, subject);
-  // console.log(url);
-  axios
-    .get(url)
-    .then(function (response) {
-      // console.log(response);
+  searchEventsData(url);
+}
+function searchEventsData(urlSearch) {
+  searchEvents(urlSearch)
+    .then((response) => {
       let searchResponse = response.data;
       if (response.data.length === 0) {
         modalNotFound.style.display = "block";
@@ -123,14 +119,18 @@ export function searchRequest(title, city, category, subject) {
         elSpinner.classList.add("hide_spinner");
       }
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
     });
 }
 // для поиска по названию/городу
-function searchTitleCity(titleEl, cityEl, subjectEl) {
+function searchEvent(titleEl, cityEl, subjectEl, searchCityID) {
   nameEventSearch = document.getElementById(titleEl).value;
-  cityEventSearch = document.getElementById(cityEl).value;
+  if (searchCityID === undefined) {
+    cityEventSearch = document.getElementById(cityEl).value;
+  } else {
+    cityEventSearch = searchCityID;
+  }
   subjectSearch = document.getElementById(subjectEl).value;
   searchRequest(
     nameEventSearch,
@@ -256,3 +256,17 @@ function pushEnterBtn(event) {
 //     }
 //   }
 // };
+
+let urlStringParams = window.location.search;
+let urlParams = new URLSearchParams(urlStringParams);
+let categoryIdParam = urlParams.get("cat_id");
+let cityIdParam = urlParams.get("city_id");
+console.log(cityIdParam);
+if (categoryIdParam !== null) {
+  categorySearch = categoryIdParam;
+  searchEvent("event_name", "location", "subject_search");
+} else if (cityIdParam !== null) {
+  searchEvent("event_name", "location", "subject_search", cityIdParam);
+} else {
+  getAllEventsData();
+}
