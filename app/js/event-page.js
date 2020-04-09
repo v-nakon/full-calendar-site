@@ -30,29 +30,6 @@ function getEventData(idEvent) {
         .classList.remove("hide_element");
     });
 }
-// axios
-//   .get("https://eventafisha.com/api/v1/events/" + idEvent)
-//   .then(function (response) {
-//     checkMetaData(response.data);
-//     document.title = response.data.title;
-//     setTitle(response.data);
-//     setDate(response.data);
-//     setLocation(response.data);
-//     setPrice(response.data);
-//     setBuyLink(response.data);
-//     setDescription(response.data);
-//     setImg(response.data);
-//     setCategory(response.data);
-//     setTags(response.data);
-//     setPromo(response.data);
-//   })
-//   .catch(function (error) {
-//     // handle error
-//     console.log(error);
-//   })
-//   .then(function () {
-//     // always executed
-//   });
 function checkMetaData(response) {
   if (response.seo.meta_title !== null) {
     setMetaData("title", response.seo.meta_title);

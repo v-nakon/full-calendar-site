@@ -261,7 +261,6 @@ let urlStringParams = window.location.search;
 let urlParams = new URLSearchParams(urlStringParams);
 let categoryIdParam = urlParams.get("cat_id");
 let cityIdParam = urlParams.get("city_id");
-console.log(cityIdParam);
 if (categoryIdParam !== null) {
   categorySearch = categoryIdParam;
   searchEvent("event_name", "location", "subject_search");

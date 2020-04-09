@@ -5,9 +5,16 @@ import { getSubjects } from "./requests.js";
 import { createUserEvent } from "./requests.js";
 import { addOptionSelect } from "./help_create_elements.js";
 
+// if (window.location.href.indexOf("event-page") == 1) {
+//   var footerCreateEvent = document.querySelector(".footer_create_event");
+//   footerCreateEvent.addEventListener("click", function () {
+//     modal.style.display = "block";
+//   });
+// }
+
 var modal = document.querySelector(".container_modal");
 var createEventBtn = document.querySelector(".container_create_event");
-var footerCreateEvent = document.querySelector(".footer_create_event");
+// var footerCreateEvent = document.querySelector(".footer_create_event");
 var closeModal = document.querySelector(".close_modal");
 var modalModeration = document.querySelector(".container_modal_moderation");
 var modalModerationError = document.querySelector(".container_modal_error");
@@ -43,9 +50,9 @@ getSubjectsData();
 createEventBtn.addEventListener("click", function () {
   modal.style.display = "block";
 });
-footerCreateEvent.addEventListener("click", function () {
-  modal.style.display = "block";
-});
+// footerCreateEvent.addEventListener("click", function () {
+//   modal.style.display = "block";
+// });
 closeModal.addEventListener("click", function () {
   modal.style.display = "none";
 });
