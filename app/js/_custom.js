@@ -208,14 +208,29 @@ function createCalendar(arrEvents) {
   calendar.render();
 }
 
+var widthMedia676 = window.matchMedia("(max-width: 676px)");
+var widthMedia471 = window.matchMedia("(max-width: 471px)");
 var searchIcon = document.getElementById("search_icon");
 var containerSearch = document.querySelector(".container_search");
 var containerLogo = document.querySelector(".container_logo");
+var headerEl = document.querySelector("header");
 searchIcon.addEventListener("click", function () {
   if (!containerSearch.classList.contains("show")) {
+    console.log("open");
+    if (widthMedia676.matches) {
+      if (widthMedia471.matches) {
+        headerEl.style.height = "80px";
+      } else {
+        headerEl.style.height = "60px";
+      }
+    }
     containerSearch.classList.add("show");
     containerLogo.classList.add("hide");
   } else {
+    console.log("close");
+    if (widthMedia676.matches) {
+      headerEl.style.height = "40px";
+    }
     containerSearch.classList.remove("show");
     containerLogo.classList.remove("hide");
   }
